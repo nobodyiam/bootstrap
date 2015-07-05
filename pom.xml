@@ -13,7 +13,7 @@
         <java.target.version>1.6</java.target.version>
         <project.encoding>UTF-8</project.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.version>4.1.7.RELEASE</spring.version>
         <servlet.version>2.4</servlet.version>
     </properties>
     <modules>
@@ -26,11 +26,6 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
