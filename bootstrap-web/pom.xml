@@ -13,6 +13,16 @@
     <version>${bootstrap.version}</version>
     <dependencies>
         <dependency>
+            <groupId>com.nobodyiam</groupId>
+            <artifactId>bootstrap-api</artifactId>
+            <version>${bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nobodyiam</groupId>
+            <artifactId>bootstrap-biz</artifactId>
+            <version>${bootstrap.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>

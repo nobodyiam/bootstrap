@@ -13,16 +13,16 @@ import java.util.List;
  */
 public interface GreetingMapper {
     @Select("SELECT id, content FROM Greeting WHERE id = #{greetingId}")
-    Greeting getGreeting(@Param("greetingId") String greetingId);
+    Greeting getGreeting(@Param("greetingId") int greetingId);
 
     @Select("SELECT id, content FROM Greeting")
-    public List<Greeting> getAllUsers();
+    List<Greeting> getAllUsers();
 
     @Insert("INSERT INTO Greeting (content) VALUES (#{content})")
-    public int insertGreeting(Greeting greeting);
+    int insertGreeting(Greeting greeting);
 
     @Update("UPDATE Greeting SET\n" +
             "content = #{content}\n" +
             "WHERE ID = #{id}")
-    public int updateGreeting(Greeting greeting);
+    int updateGreeting(Greeting greeting);
 }

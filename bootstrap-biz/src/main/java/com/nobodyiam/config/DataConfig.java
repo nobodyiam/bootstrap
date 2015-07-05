@@ -27,9 +27,9 @@ public class DataConfig implements TransactionManagementConfigurer {
         try {
             dataSource.setDriverClass("com.mysql.jdbc.Driver");
         } catch (PropertyVetoException e) {
-            e.printStackTrace();
+            return null;
         }
-        dataSource.setJdbcUrl("jdbc:mysql://localhost/bootstrap");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/bootstrap");
         dataSource.setUser("bootstrap");
         dataSource.setPassword("bootstrap");
         dataSource.setAcquireIncrement(10);
