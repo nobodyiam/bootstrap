@@ -16,7 +16,7 @@ public interface GreetingMapper {
     Greeting getGreeting(@Param("greetingId") int greetingId);
 
     @Select("SELECT id, content FROM Greeting")
-    List<Greeting> getAllUsers();
+    List<Greeting> getAllGreetings();
 
     @Insert("INSERT INTO Greeting (content) VALUES (#{content})")
     int insertGreeting(Greeting greeting);
