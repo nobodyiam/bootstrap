@@ -14,6 +14,7 @@
         <project.encoding>UTF-8</project.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.1.7.RELEASE</spring.version>
+        <aspectj.version>1.8.6</aspectj.version>
         <servlet.version>2.4</servlet.version>
     </properties>
     <modules>
@@ -38,6 +39,11 @@
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
             <!-- web -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -54,6 +60,17 @@
                 <groupId>org.tuckey</groupId>
                 <artifactId>urlrewritefilter</artifactId>
                 <version>4.0.4</version>
+            </dependency>
+            <!-- xml -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.1.4</version>
             </dependency>
             <!-- guava -->
             <dependency>
@@ -98,6 +115,13 @@
                     <optimize>true</optimize>
                     <source>${java.src.version}</source>
                     <target>${java.target.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warName>${artifactId}-${version}</warName>
                 </configuration>
             </plugin>
         </plugins>

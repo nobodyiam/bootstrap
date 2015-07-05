@@ -3,7 +3,7 @@
 <urlrewrite default-match-type="wildcard">
     <rule>
         <from>/</from>
-        <to>//app/</to>
+        <to>/app/</to>
     </rule>
     <rule>
         <from>/**</from>
