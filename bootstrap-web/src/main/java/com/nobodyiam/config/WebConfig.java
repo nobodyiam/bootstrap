@@ -26,7 +26,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter());
+        converters.add(new MappingJackson2HttpMessageConverter()); // must add this to support @ResponseBody
     }
 
     @Bean
