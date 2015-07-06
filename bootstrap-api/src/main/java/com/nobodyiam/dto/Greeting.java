@@ -6,19 +6,22 @@ import java.io.Serializable;
  * Created by Jason on 7/5/15.
  */
 public class Greeting implements Serializable{
-    private final Long id;
-    private final String content;
+    private long id;
+    private String content;
 
-    public Greeting(Long id, String content) {
-        this.id = id;
-        this.content = content;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
     public String getContent() {
         return content;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
