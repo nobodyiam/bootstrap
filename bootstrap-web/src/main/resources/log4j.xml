@@ -6,10 +6,10 @@
         <param name="Encoding" value="UTF-8" />
         <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[bootstrap-web]%d %-5p [%c] %m%n"/>
+            <param name="ConversionPattern" value="[bootstrap-web][%t]%d %-5p [%c] %m%n"/>
         </layout>
     </appender>
-    <logger name="com.nobodyiam" additivity="false">
+    <logger name="com.nobodyiam.aop" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="CONSOLE" />
     </logger>
