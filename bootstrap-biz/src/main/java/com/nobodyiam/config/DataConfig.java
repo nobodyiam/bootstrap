@@ -49,7 +49,7 @@ public class DataConfig implements TransactionManagementConfigurer {
         } catch (PropertyVetoException e) {
             return null;
         }
-        dataSource.setJdbcUrl("jdbc:h2:mem:bootstrap;INIT=runscript from 'classpath:sql/bootstrap.h2.sql'");
+        dataSource.setJdbcUrl("jdbc:h2:mem:bootstrap;INIT=runscript from 'classpath:sql/bootstrap.h2.sql'\\;runscript from 'classpath:sql/bootstrap.insert.sql'");
         dataSource.setUser("sa");
         dataSource.setPassword("");
         dataSource.setAcquireIncrement(10);
