@@ -50,14 +50,15 @@ public class DataConfig implements TransactionManagementConfigurer {
      * @return the h2 database data source
      */
     @Bean
-    public DataSource dataSource() {
+    public DataSource h2DataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("org.h2.Driver");
         } catch (PropertyVetoException e) {
             return null;
         }
-        dataSource.setJdbcUrl("jdbc:h2:mem:bootstrap;INIT=runscript from 'classpath:sql/bootstrap.h2.sql'\\;runscript from 'classpath:sql/bootstrap.insert.sql'");
+        dataSource.setJdbcUrl("jdbc:h2:mem:bootstrap;INIT=runscript from 'classpath:sql/bootstrap.h2.sql'\\;" +
+                "runscript from 'classpath:sql/bootstrap.insert.sql'");
         dataSource.setUser("sa");
         dataSource.setPassword("");
         dataSource.setAcquireIncrement(10);
@@ -71,13 +72,13 @@ public class DataConfig implements TransactionManagementConfigurer {
 
     @Bean
     public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
+        return new DataSourceTransactionManager(h2DataSource());
     }
 
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(h2DataSource());
         sessionFactory.setTypeAliasesPackage("com.nobodyiam.dto");
         return sessionFactory;
     }
