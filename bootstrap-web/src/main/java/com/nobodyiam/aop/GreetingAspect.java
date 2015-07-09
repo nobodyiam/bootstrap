@@ -7,11 +7,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Jason on 7/9/15.
  */
 @Aspect
+@Component
 public class GreetingAspect {
     private static final Logger logger = LoggerFactory.getLogger(GreetingAspect.class);
 
@@ -32,4 +34,6 @@ public class GreetingAspect {
 
         return greetingId;
     }
+
+
 }
