@@ -36,14 +36,14 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
-    public long insertGreeting(Greeting greeting) {
+    public int insertGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
         return greetingMapper.insertGreeting(greeting);
     }
 
     @Override
-    public long updateGreeting(Greeting greeting) {
+    public int updateGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
         return greetingMapper.updateGreeting(greeting);

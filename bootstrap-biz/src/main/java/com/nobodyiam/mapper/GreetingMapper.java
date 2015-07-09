@@ -1,10 +1,7 @@
 package com.nobodyiam.mapper;
 
 import com.nobodyiam.dto.Greeting;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,8 +16,9 @@ public interface GreetingMapper {
     List<Greeting> getGreetings(@Param("limit") int limit, @Param("offset") int offset);
 
     @Insert("INSERT INTO Greeting (content) VALUES (#{content})")
-    long insertGreeting(Greeting greeting);
+    @SelectKey(before = false, resultType = long.class, keyProperty = "id", statement = "call identity()")
+    int insertGreeting(Greeting greeting);
 
     @Update("UPDATE Greeting SET content = #{content} WHERE ID = #{id}")
-    long updateGreeting(Greeting greeting);
+    int updateGreeting(Greeting greeting);
 }

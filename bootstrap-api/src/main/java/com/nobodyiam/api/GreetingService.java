@@ -26,14 +26,14 @@ public interface GreetingService {
     /**
      * add a new greeting
      * @param greeting
-     * @return
+     * @return the number of rows inserted
      */
-    long insertGreeting(Greeting greeting);
+    int insertGreeting(Greeting greeting);
 
     /**
      * update a greeting
      * @param greeting
-     * @return
+     * @return the number of rows updated
      */
-    long updateGreeting(Greeting greeting);
+    int updateGreeting(Greeting greeting);
 }

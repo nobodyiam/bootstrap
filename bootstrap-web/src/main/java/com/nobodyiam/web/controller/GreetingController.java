@@ -29,8 +29,8 @@ public class GreetingController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Greeting addGreeting(@RequestBody Greeting greeting) {
-        long greetingId = greetingService.insertGreeting(greeting);
-        return greetingService.getGreeting(greetingId);
+        greetingService.insertGreeting(greeting);
+        return greetingService.getGreeting(greeting.getId());
     }
 
     @RequestMapping(value = "/{greetingId}", method = RequestMethod.PUT)

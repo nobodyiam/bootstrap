@@ -21,18 +21,20 @@ public class GreetingAspect {
     public void insertGreeting() {}
 
     @Around("insertGreeting()")
-    public long logCreatedGreetingId(ProceedingJoinPoint joinPoint) throws Throwable {
-        long greetingId = (Long)joinPoint.proceed();
+    public int logCreatedGreetingId(ProceedingJoinPoint joinPoint) throws Throwable {
+        int insertedRows = (Integer)joinPoint.proceed();
         if (logger.isDebugEnabled()) {
             Object[] args = joinPoint.getArgs();
             String greetingContent = "";
+            long greetingId = 0;
             if (args != null && args.length > 0 && args[0] instanceof Greeting) {
                 greetingContent = ((Greeting) args[0]).getContent();
+                greetingId = ((Greeting) args[0]).getId();
             }
             logger.debug(String.format("Creating greeting with content: %s, new greeting id is: %d", greetingContent, greetingId));
         }
 
-        return greetingId;
+        return insertedRows;
     }
 
 
