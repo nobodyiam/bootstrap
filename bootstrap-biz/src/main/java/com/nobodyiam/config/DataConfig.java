@@ -21,8 +21,8 @@ import java.beans.PropertyVetoException;
 @MapperScan("com.nobodyiam.mapper")
 public class DataConfig implements TransactionManagementConfigurer {
 
-    @Bean
-    public DataSource dataSource() {
+//    @Bean
+    public DataSource mysqlDataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("com.mysql.jdbc.Driver");
@@ -32,6 +32,26 @@ public class DataConfig implements TransactionManagementConfigurer {
         dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/bootstrap");
         dataSource.setUser("bootstrap");
         dataSource.setPassword("bootstrap");
+        dataSource.setAcquireIncrement(10);
+        dataSource.setIdleConnectionTestPeriod(60);
+        dataSource.setMaxPoolSize(30);
+        dataSource.setMinPoolSize(5);
+        dataSource.setMaxStatements(10);
+
+        return dataSource;
+    }
+
+    @Bean
+    public DataSource dataSource() {
+        ComboPooledDataSource dataSource = new ComboPooledDataSource();
+        try {
+            dataSource.setDriverClass("org.h2.Driver");
+        } catch (PropertyVetoException e) {
+            return null;
+        }
+        dataSource.setJdbcUrl("jdbc:h2:mem:bootstrap;INIT=runscript from 'classpath:sql/bootstrap.h2.sql'");
+        dataSource.setUser("sa");
+        dataSource.setPassword("");
         dataSource.setAcquireIncrement(10);
         dataSource.setIdleConnectionTestPeriod(60);
         dataSource.setMaxPoolSize(30);
