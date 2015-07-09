@@ -21,6 +21,10 @@ import java.beans.PropertyVetoException;
 @MapperScan("com.nobodyiam.mapper")
 public class DataConfig implements TransactionManagementConfigurer {
 
+    /**
+     *
+     * @return the mysql data source
+     */
 //    @Bean
     public DataSource mysqlDataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -41,6 +45,10 @@ public class DataConfig implements TransactionManagementConfigurer {
         return dataSource;
     }
 
+    /**
+     *
+     * @return the h2 database data source
+     */
     @Bean
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
