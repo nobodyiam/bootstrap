@@ -1,5 +1,6 @@
 package com.nobodyiam.impl;
 
+import com.nobodyiam.annotation.RestrictBatchSize;
 import com.nobodyiam.api.GreetingService;
 import com.nobodyiam.dto.Greeting;
 import com.nobodyiam.mapper.GreetingMapper;
@@ -27,9 +28,9 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
+    @RestrictBatchSize(paramIndex = 0)
     public List<Greeting> getGreetings(int limit, int offset) {
         checkArgument(limit > 0, "Limit must be positive");
-        checkArgument(limit < ConstantsUtil.MaxBatchSize(), String.format("Limit must be smaller than %d", ConstantsUtil.MaxBatchSize()));
         checkArgument(offset >= 0, "Offset must be equal to or greater than 0");
 
         return greetingMapper.getGreetings(limit, offset);
