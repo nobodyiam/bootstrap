@@ -4,9 +4,11 @@ import com.nobodyiam.annotation.RestrictBatchSize;
 import com.nobodyiam.api.GreetingService;
 import com.nobodyiam.dto.Greeting;
 import com.nobodyiam.mapper.GreetingMapper;
-import com.nobodyiam.util.ConstantsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by Jason on 7/5/15.
  */
 @Service("greetingService")
+@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
 public class GreetingServiceImpl implements GreetingService {
 
     @Autowired
@@ -37,6 +40,7 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public int insertGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
@@ -44,6 +48,7 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public int updateGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
