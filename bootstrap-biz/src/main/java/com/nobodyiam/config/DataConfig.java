@@ -40,7 +40,8 @@ public class DataConfig implements TransactionManagementConfigurer {
         dataSource.setAcquireIncrement(10);
         dataSource.setIdleConnectionTestPeriod(60);
         dataSource.setMaxPoolSize(30);
-        dataSource.setMinPoolSize(5);
+        dataSource.setMinPoolSize(3);
+        dataSource.setInitialPoolSize(5);
         dataSource.setMaxStatements(10);
 
         return dataSource;
