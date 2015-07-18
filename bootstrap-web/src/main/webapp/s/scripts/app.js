@@ -106,8 +106,8 @@
 
         this.save = function () {
             this.requesting = true;
-            var finallyCallback = function() {
-               self.requesting = false;
+            var finallyCallback = function () {
+                self.requesting = false;
             };
             this.item.id ? this.update(finallyCallback) : this.create(finallyCallback);
         };
