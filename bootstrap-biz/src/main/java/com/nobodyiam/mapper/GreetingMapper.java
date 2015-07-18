@@ -9,16 +9,16 @@ import java.util.List;
  * Created by Jason on 7/5/15.
  */
 public interface GreetingMapper {
-    @Select("SELECT id, content FROM Greeting WHERE id = #{greetingId}")
+    @Select("SELECT id, content, updateTime FROM Greeting WHERE id = #{greetingId} and isDeleted = 0")
     Greeting getGreeting(@Param("greetingId") long greetingId);
 
-    @Select("SELECT id, content FROM Greeting limit #{limit} offset #{offset}")
+    @Select("SELECT id, content, updateTime FROM Greeting where isDeleted = 0 limit #{limit} offset #{offset}")
     List<Greeting> getGreetings(@Param("limit") int limit, @Param("offset") int offset);
 
     @Insert("INSERT INTO Greeting (content) VALUES (#{content})")
     @SelectKey(before = false, resultType = long.class, keyProperty = "id", statement = "call identity()")
     int insertGreeting(Greeting greeting);
 
-    @Update("UPDATE Greeting SET content = #{content} WHERE ID = #{id}")
+    @Update("UPDATE Greeting SET content = #{content}, updateTime = Now() WHERE ID = #{id} and isDeleted = 0")
     int updateGreeting(Greeting greeting);
 }

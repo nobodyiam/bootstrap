@@ -53,25 +53,27 @@
                 size: 'lg',
                 resolve: {
                     greeting: function () {
-                        return greeting;
+                        return angular.copy(greeting);
                     }
                 }
             });
 
             modalInstance.result.then(function (updatedItem) {
-                var matchingGreeting = _.find(self.greetings, function (item) {
+                var matchingIndex = _.findIndex(self.greetings, function (item) {
                     return item.id == greeting.id;
                 });
 
-                if (!matchingGreeting) {
+                if (matchingIndex < 0) {
                     return;
                 }
-                matchingGreeting = updatedItem;
+                self.greetings[matchingIndex] = updatedItem;
             });
         };
 
         this.delete = function (item) {
+            if (!confirm('Are you sure to delete this greeting?')) {
 
+            }
         };
 
         this.init = function () {
