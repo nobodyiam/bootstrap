@@ -27,7 +27,7 @@
 
         this.add = function () {
             var modalInstance = $modal.open({
-                templateUrl: 'templates/add.html',
+                templateUrl: 'templates/edit.html',
                 controller: 'GreetingController',
                 controllerAs: 'greetingCtrl',
                 size: 'lg',
@@ -43,20 +43,41 @@
                     self.greetings.push(addedItem);
                 }
             });
-        }
+        };
 
-        this.edit = function (item) {
+        this.edit = function (greeting) {
+            var modalInstance = $modal.open({
+                templateUrl: 'templates/edit.html',
+                controller: 'GreetingController',
+                controllerAs: 'greetingCtrl',
+                size: 'lg',
+                resolve: {
+                    greeting: function () {
+                        return greeting;
+                    }
+                }
+            });
 
-        }
+            modalInstance.result.then(function (updatedItem) {
+                var matchingGreeting = _.find(self.greetings, function (item) {
+                    return item.id == greeting.id;
+                });
+
+                if (!matchingGreeting) {
+                    return;
+                }
+                matchingGreeting = updatedItem;
+            });
+        };
 
         this.delete = function (item) {
 
-        }
+        };
 
         this.init = function () {
             this.getGreetings(this.pageNo, this.pageSize);
 
-        }
+        };
 
         this.init();
     });
@@ -66,17 +87,30 @@
         var self = this;
 
         this.save = function () {
+            this.item.id ? this.update() : this.create();
+        };
+
+        this.create = function () {
             $http.post('/greetings', this.item).success(function (data, status, headers, config) {
                 toastr.success('Saved successfully');
                 self.close(data);
             }).error(function (data, status, headers, config) {
                 toastr.error((data && data.msg) || 'Saved failed');
             })
-        }
+        };
+
+        this.update = function () {
+            $http.put('/greetings/' + this.item.id, this.item).success(function (data, status, headers, config) {
+                toastr.success('Updated successfully');
+                self.close(data);
+            }).error(function (data, status, headers, config) {
+                toastr.error((data && data.msg) || 'Updated failed');
+            })
+        };
 
         this.close = function (data) {
             $modalInstance.close(data);
-        }
+        };
     });
 
 })(jQuery);

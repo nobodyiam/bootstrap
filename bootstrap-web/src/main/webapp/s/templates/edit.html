@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <input type="submit" class="btn btn-primary pull-right" value="Submit Greeting"
+        <input type="submit" class="btn btn-primary pull-right" value="{{greetingCtrl.item.id ? 'Update' : 'Submit'}}"
                ng-disabled="greetingForm.$pristine || greetingForm.$invalid"/>
     </div>
 </form>
