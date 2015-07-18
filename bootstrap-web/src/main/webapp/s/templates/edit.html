@@ -17,7 +17,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <input type="submit" class="btn btn-primary pull-right" value="{{greetingCtrl.item.id ? 'Update' : 'Submit'}}"
+        <a href="javascript:;" ng-click="greetingCtrl.cancel()"
+           ng-class="{'cancel-link' : true, 'disabled-link': greetingCtrl.requesting}">Cancel</a>
+        <input type="submit" class="btn btn-primary" value="{{greetingCtrl.item.id ? 'Update' : 'Submit'}}"
                ng-disabled="greetingForm.$pristine || greetingForm.$invalid"/>
     </div>
 </form>

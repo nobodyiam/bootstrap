@@ -1,0 +1,8 @@
+.cancel-link {
+    margin-right: 0.6em;
+}
+
+.disabled-link {
+    color: #cccccc;
+    cursor: not-allowed;
+}
