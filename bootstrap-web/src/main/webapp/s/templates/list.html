@@ -1,0 +1,31 @@
+<div class="panel panel-default" ng-controller="GreetingsController as greeting">
+    <div class="panel-heading">
+        <button type="button" class="btn btn-success" ng-click="greeting.add()">Add</button>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="bg-info">
+            <th>Id</th>
+            <th>Content</th>
+            <th width="10%">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in greeting.greetings">
+            <td>{{item.id}}</td>
+            <td>{{item.content}}</td>
+            <td>
+                <a href="javascript:;" ng-click="greeting.edit(item)">Edit</a>
+                <a href="javascript:;" ng-click="greeting.delete(item)">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--<div class="panel-footer clearfix">-->
+        <!--<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" max-size="10" rotate="false"-->
+                    <!--items-per-page="limit" ng-change="pageChanged(currentPage)" class="pagination-right"-->
+                    <!--previous-text="&lsaquo;" next-text="&rsaquo;" first-text="首页" last-text="尾页"></pagination>-->
+    <!--</div>-->
+</div>

@@ -17,7 +17,10 @@
         <from>/styles/**</from>
         <to>/s/styles/$1</to>
     </rule>
-
+    <rule>
+        <from>/templates/**</from>
+        <to>/s/templates/$1</to>
+    </rule>
     <rule>
         <from>/</from>
         <to>/app/</to>
