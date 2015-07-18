@@ -59,9 +59,7 @@
             });
 
             modalInstance.result.then(function (updatedItem) {
-                var matchingIndex = _.findIndex(self.greetings, function (item) {
-                    return item.id == greeting.id;
-                });
+                var matchingIndex = self.findGreetingIndex(updatedItem);
 
                 if (matchingIndex < 0) {
                     return;
@@ -70,15 +68,35 @@
             });
         };
 
-        this.delete = function (item) {
+        this.delete = function (greeting) {
             if (!confirm('Are you sure to delete this greeting?')) {
-
+                return;
             }
+
+            $http.delete('/greetings/' + greeting.id).success(function (data, status, headers, config) {
+                toastr.success('Deleted successfully');
+
+                var matchingIndex = self.findGreetingIndex(data);
+
+                if (matchingIndex < 0) {
+                    return;
+                }
+
+                self.greetings.splice(matchingIndex, 1);
+            }).error(function (data, status, headers, config) {
+                toastr.error((data && data.msg) || 'Deleted failed');
+            })
         };
+
+        this.findGreetingIndex = function (greeting) {
+            return _.findIndex(self.greetings, function (item) {
+                return item.id == greeting.id;
+            });
+        }
+
 
         this.init = function () {
             this.getGreetings(this.pageNo, this.pageSize);
-
         };
 
         this.init();
