@@ -6,6 +6,7 @@
 <title>Bootstrap</title>
 <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"/>
 <!-- This is only for demo use. Please put static contents to CDN in prodution environment. -->
+<link rel="stylesheet" type="text/css" href="/styles/angular-toastr-1.4.1.min.css"/>
 <link rel="stylesheet" type="text/css" href="/styles/app.css"/>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.3.9/angular.min.js"></script>
@@ -18,9 +19,11 @@
 <body>
 <div ng-include src="'/templates/list.html'"></div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
-<!-- This is only for demo use. Please put static contents to CDN in prodution environment. -->
+<!-- This is only for demo use. Please compress and put static contents to CDN in prodution environment. -->
 <script type="text/javascript" src="/scripts/ui-bootstrap-0.13.0.min.js"></script>
 <script type="text/javascript" src="/scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>
+<script type="text/javascript" src="/scripts/angular-toastr-1.4.1.tpls.min.js"></script>
+<script type="text/javascript" src="/scripts/http.js"></script>
 <script type="text/javascript" src="/scripts/app.js"></script>
 </body>
 </html>
