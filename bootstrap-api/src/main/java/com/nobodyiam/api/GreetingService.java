@@ -36,4 +36,11 @@ public interface GreetingService {
      * @return the number of rows updated
      */
     int updateGreeting(Greeting greeting);
+
+    /**
+     * delete a greeting
+     * @param greeting
+     * @return the number of rows deleted
+     */
+    int deleteGreeting(Greeting greeting);
 }

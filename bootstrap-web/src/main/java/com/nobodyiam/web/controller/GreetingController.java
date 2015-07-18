@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 /**
  * Created by Jason on 7/5/15.
  */
@@ -38,5 +40,14 @@ public class GreetingController {
         greeting.setId(greetingId);
         greetingService.updateGreeting(greeting);
         return greetingService.getGreeting(greetingId);
+    }
+
+    @RequestMapping(value = "/{greetingId}", method = RequestMethod.DELETE)
+    public Greeting deleteGreeting(@PathVariable long greetingId) {
+        Greeting greeting = greetingService.getGreeting(greetingId);
+        checkArgument(greeting != null, String.format("Greeting (id = %d) doesn't exist!", greetingId));
+
+        greetingService.deleteGreeting(greeting);
+        return greeting;
     }
 }

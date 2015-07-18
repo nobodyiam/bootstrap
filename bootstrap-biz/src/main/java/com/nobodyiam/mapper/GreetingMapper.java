@@ -21,4 +21,7 @@ public interface GreetingMapper {
 
     @Update("UPDATE Greeting SET content = #{content}, updateTime = Now() WHERE ID = #{id} and isDeleted = 0")
     int updateGreeting(Greeting greeting);
+
+    @Update("UPDATE Greeting SET isDeleted = 1, updateTime = Now() WHERE ID = #{id} and isDeleted = 0")
+    int deleteGreeting(Greeting greeting);
 }

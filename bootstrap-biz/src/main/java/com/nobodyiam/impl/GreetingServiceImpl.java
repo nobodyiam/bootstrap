@@ -54,4 +54,12 @@ public class GreetingServiceImpl implements GreetingService {
 
         return greetingMapper.updateGreeting(greeting);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public int deleteGreeting(Greeting greeting) {
+        checkNotNull(greeting, "Greeting cannot be null");
+
+        return greetingMapper.deleteGreeting(greeting);
+    }
 }

@@ -99,4 +99,21 @@ public class GreetingServiceImplTest {
         assertEquals(affectedRows, greetingService.updateGreeting(greeting));
         verify(greetingMapper, times(1)).updateGreeting(greeting);
     }
+
+    @Test(expected = NullPointerException.class)
+    public void testDeleteGreetingWithNullInput() {
+        Greeting nullGreeting = null;
+
+        greetingService.deleteGreeting(nullGreeting);
+    }
+
+    @Test
+    public void testDeleteGreeting() {
+        int expectedDeletedRows = 1;
+
+        when(greetingMapper.deleteGreeting(greeting)).thenReturn(expectedDeletedRows);
+
+        assertEquals(expectedDeletedRows, greetingService.deleteGreeting(greeting));
+        verify(greetingMapper, times(1)).deleteGreeting(greeting);
+    }
 }
