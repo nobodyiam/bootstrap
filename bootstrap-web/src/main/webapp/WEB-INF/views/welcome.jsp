@@ -20,6 +20,7 @@
 <script type="text/javascript" src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
 <!-- This is only for demo use. Please put static contents to CDN in prodution environment. -->
 <script type="text/javascript" src="/scripts/ui-bootstrap-0.13.0.min.js"></script>
+<script type="text/javascript" src="/scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>
 <script type="text/javascript" src="/scripts/app.js"></script>
 </body>
 </html>

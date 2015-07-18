@@ -1,6 +1,6 @@
-<div class="panel panel-default" ng-controller="GreetingsController as greeting">
+<div class="panel panel-default" ng-controller="GreetingsController as greetingsCtrl">
     <div class="panel-heading">
-        <button type="button" class="btn btn-success" ng-click="greeting.add()">Add</button>
+        <button type="button" class="btn btn-success" ng-click="greetingsCtrl.add()">Add</button>
     </div>
 
     <table class="table table-bordered table-hover">
@@ -12,12 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in greeting.greetings">
+        <tr ng-repeat="item in greetingsCtrl.greetings">
             <td>{{item.id}}</td>
             <td>{{item.content}}</td>
             <td>
-                <a href="javascript:;" ng-click="greeting.edit(item)">Edit</a>
-                <a href="javascript:;" ng-click="greeting.delete(item)">Delete</a>
+                <a href="javascript:;" ng-click="greetingsCtrl.edit(item)">Edit</a>
+                <a href="javascript:;" ng-click="greetingsCtrl.delete(item)">Delete</a>
             </td>
         </tr>
         </tbody>

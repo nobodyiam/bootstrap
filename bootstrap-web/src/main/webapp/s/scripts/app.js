@@ -23,7 +23,17 @@
         }
 
         this.add = function () {
-
+            $modal.open({
+                templateUrl: 'templates/add.html',
+                controller: 'GreetingController',
+                controllerAs: 'greetingCtrl',
+                size: 'lg',
+                resolve: {
+                    greeting: function(){
+                        return {};
+                    }
+                }
+            });
         }
 
         this.edit = function (item) {
@@ -40,6 +50,14 @@
         }
 
         this.init();
+    });
+
+    app.controller('GreetingController', function ($scope, $http, greeting) {
+        this.item = greeting;
+
+        this.save = function() {
+            console.log('---- save: ' + JSON.stringify(this.item));
+        }
     });
 
 })(jQuery);

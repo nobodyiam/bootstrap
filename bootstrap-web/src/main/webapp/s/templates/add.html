@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{greetingCtrl.item ? 'Edit' : 'Add'}} Greeting</h3>
+</div>
+<div class="modal-body">
+    <form name="greetingForm" class="form-horizontal" novalidate ng-submit="greetingCtrl.save()">
+        <div class="form-group"
+             ng-class="{ 'has-error' : greetingForm.content.$invalid && greetingForm.content.$dirty}">
+            <label class="col-sm-2 control-label">* Content</label>
+
+            <div class="col-sm-10">
+                <input type="text" name="content" class="form-control" ng-model="greetingCtrl.item.content" required/>
+
+                <p ng-show="greetingForm.content.$invalid && greetingForm.content.$dirty" class="help-block">Please fill
+                    in the content</p>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <input type="submit" class="btn btn-primary pull-right" value="Submit Greeting"
+           ng-disabled="greetingForm.$pristine || greetingForm.$invalid"/>
+</div>
