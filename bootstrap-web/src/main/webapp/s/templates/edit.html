@@ -9,7 +9,8 @@
             <label class="col-sm-2 control-label">* Content</label>
 
             <div class="col-sm-10">
-                <input type="text" name="content" class="form-control" ng-model="greetingCtrl.item.content" required/>
+                <input type="text" name="content" class="form-control" ng-model="greetingCtrl.item.content"
+                       autofocus="true" required />
 
                 <p ng-show="greetingForm.content.$invalid && greetingForm.content.$dirty" class="help-block">Please fill
                     in the content</p>
