@@ -9,7 +9,7 @@
             <param name="ConversionPattern" value="[bootstrap-web][%t]%d %-5p [%c] %m%n"/>
         </layout>
     </appender>
-    <logger name="com.nobodyiam" additivity="false">
+    <logger name="com.nobodyiam.aop" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="CONSOLE" />
     </logger>
