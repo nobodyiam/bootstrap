@@ -33,21 +33,21 @@ public class GreetingAspect {
 
     @Around(value = "insertGreeting(greeting)", argNames = "joinPoint, greeting")
     public int logCreatedGreetingId(ProceedingJoinPoint joinPoint, Greeting greeting) throws Throwable {
-        logger.debug(String.format("Creating greeting with content: %s", greeting.getContent()));
+        logger.debug("Creating greeting with content: {}", greeting.getContent());
         int insertedRows = (Integer) joinPoint.proceed();
-        logger.debug(String.format("Greeting created - id: %d, content: %s", greeting.getId(), greeting.getContent()));
+        logger.debug("Greeting created - id: {}, content: {}", greeting.getId(), greeting.getContent());
 
         return insertedRows;
     }
 
     @Before(value = "updateGreeting(greeting)", argNames = "greeting")
     public void beforeUpdatingGreeting(Greeting greeting) {
-        logger.debug(String.format("Updating greeting(id=%d) with content: %s", greeting.getId(), greeting.getContent()));
+        logger.debug("Updating greeting(id={}) with content: {}", greeting.getId(), greeting.getContent());
     }
 
     @AfterThrowing(value = "getGreetings(limit, offset)", argNames = "limit, offset, e", throwing = "e")
     public void logInvalidGreetingsBatch(int limit, int offset, Exception e) {
-        logger.error(String.format("Invalid batch when querying greetings - limit: %d, offset: %d, exception: %s", limit, offset, e));
+        logger.error("Invalid batch when querying greetings - limit: {}, offset: {}, exception: {}", limit, offset, e);
     }
 
     @After("getGreeting()")
