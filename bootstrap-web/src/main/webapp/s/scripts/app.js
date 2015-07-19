@@ -33,7 +33,8 @@
             var modalInstance = this.popUpEditModal({});
 
             modalInstance.result.then(function (addedItem) {
-                if (self.currentPage == 1 && self.greetings.length < self.pageSize) {
+                self.totalItems++;
+                if (self.greetings.length < self.pageSize) {
                     self.greetings.push(addedItem);
                 }
             });
@@ -82,7 +83,12 @@
                     return;
                 }
 
+                if (self.greetings.length == self.pageSize) {
+                    self.refresh();
+                    return;
+                }
                 self.greetings.splice(matchingIndex, 1);
+                self.totalItems--;
             }).error(function (data, status, headers, config) {
                 toastr.error((data && data.msg) || 'Deleted failed');
             })
@@ -94,15 +100,15 @@
             });
         };
 
-        this.pageChanged = function() {
-          this.init();
+        this.pageChanged = function () {
+            this.refresh();
         };
 
-        this.init = function () {
+        this.refresh = function () {
             this.getGreetings(this.currentPage, this.pageSize);
         };
 
-        this.init();
+        this.refresh();
     });
 
     app.controller('GreetingController', function ($scope, $http, $modalInstance, toastr, greeting) {
