@@ -4,7 +4,6 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,6 @@ import java.util.regex.Pattern;
 /**
  * Serve as the authentication check
  */
-@Component
 public class AuthFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
     private String prefix = "";
