@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"/>
 <!-- This is only for demo use. Please put static contents to CDN in prodution environment. -->
 <link rel="stylesheet" type="text/css" href="/styles/angular-toastr-1.4.1.min.css"/>
+<link rel='stylesheet' href='/styles/loading-bar.min.css' type='text/css' media='all' />
 <link rel="stylesheet" type="text/css" href="/styles/app.css"/>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.3.9/angular.min.js"></script>
@@ -23,6 +24,7 @@
 <script type="text/javascript" src="/scripts/ui-bootstrap-0.13.0.min.js"></script>
 <script type="text/javascript" src="/scripts/ui-bootstrap-tpls-0.13.0.min.js"></script>
 <script type="text/javascript" src="/scripts/angular-toastr-1.4.1.tpls.min.js"></script>
+<script type='text/javascript' src='/scripts/loading-bar.min.js'></script>
 <script type="text/javascript" src="/scripts/http.js"></script>
 <script type="text/javascript" src="/scripts/app.js"></script>
 </body>

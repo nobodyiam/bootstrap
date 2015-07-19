@@ -2,6 +2,7 @@
     var app = angular.module('Greeting', [
         'ui.bootstrap',
         'toastr',
+        'angular-loading-bar',
         'httpInterceptors' //custom http interceptor
     ]);
 
@@ -117,6 +118,9 @@
         var requesting = false;
 
         this.save = function () {
+            if (this.requesting) {
+                return;
+            }
             this.requesting = true;
             var finallyCallback = function () {
                 self.requesting = false;
