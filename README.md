@@ -8,6 +8,7 @@ This is a bootstrap java web project which shows the use of following components
 * AOP
 * Annotation
 * Transaction
+* AngularJS
 
 
 ## Steps to run the demo
