@@ -18,7 +18,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
 <body>
-<div ng-include src="'/templates/list.html'"></div>
+<div class="main-list container-fluid" ng-include="'/templates/list.html'"></div>
 <script type="text/javascript" src="//cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
 <!-- This is only for demo use. Please compress and put static contents to CDN in prodution environment. -->
 <script type="text/javascript" src="/scripts/ui-bootstrap-0.13.0.min.js"></script>

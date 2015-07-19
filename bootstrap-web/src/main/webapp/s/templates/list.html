@@ -1,34 +1,51 @@
-<div class="panel panel-default" ng-controller="GreetingsController as greetingsCtrl">
-    <div class="panel-heading">
-        <button type="button" class="btn btn-success" ng-click="greetingsCtrl.add()">Add</button>
-    </div>
+<div ng-controller="GreetingsController as greetingsCtrl">
+    <alert type="info" close="greetingsCtrl.closeAlert()" ng-show="greetingsCtrl.showAlert">
+        <p>This is a bootstrap java web project which shows the use of following components:</p>
+        <ul>
+            <li>Spring</li>
+            <li>Spring MVC</li>
+            <li>MyBatis</li>
+            <li>AOP</li>
+            <li>Annotation</li>
+            <li>Transaction</li>
+            <li>AngularJS</li>
+        </ul>
+        <p>Try to add a greeting first :-)</p>
+    </alert>
 
-    <table class="table table-bordered table-hover">
-        <thead>
-        <tr class="bg-info">
-            <th>Id</th>
-            <th width="50%">Content</th>
-            <th>Update Time</th>
-            <th width="10%">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in greetingsCtrl.greetings">
-            <td>{{item.id}}</td>
-            <td>{{item.content}}</td>
-            <td>{{item.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-            <td>
-                <a href="javascript:;" ng-click="greetingsCtrl.edit(item)">Edit</a>
-                <a href="javascript:;" ng-click="greetingsCtrl.delete(item)">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button type="button" class="btn btn-success" ng-click="greetingsCtrl.add()">Add</button>
+        </div>
 
-    <div class="panel-footer clearfix">
-        <pagination boundary-links="true" total-items="greetingsCtrl.totalItems" ng-model="greetingsCtrl.currentPage"
-                    max-size="10" rotate="false" items-per-page="greetingsCtrl.pageSize"
-                    ng-change="greetingsCtrl.pageChanged()" class="pagination-right"
-                    previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr class="bg-info">
+                <th>Id</th>
+                <th width="50%">Content</th>
+                <th>Update Time</th>
+                <th width="10%">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in greetingsCtrl.greetings">
+                <td>{{item.id}}</td>
+                <td>{{item.content}}</td>
+                <td>{{item.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>
+                    <a href="javascript:;" ng-click="greetingsCtrl.edit(item)">Edit</a>
+                    <a href="javascript:;" ng-click="greetingsCtrl.delete(item)">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="panel-footer clearfix">
+            <pagination boundary-links="true" total-items="greetingsCtrl.totalItems"
+                        ng-model="greetingsCtrl.currentPage"
+                        max-size="10" rotate="false" items-per-page="greetingsCtrl.pageSize"
+                        ng-change="greetingsCtrl.pageChanged()" class="pagination-right"
+                        previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
+        </div>
     </div>
 </div>

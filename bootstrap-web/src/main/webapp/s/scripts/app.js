@@ -10,9 +10,10 @@
 
     app.controller('GreetingsController', function ($scope, $http, $modal, toastr) {
         this.currentPage = 1;
-        this.pageSize = 10;
+        this.pageSize = 5;
         this.greetings = [];
         this.totalItems = 0;
+        this.showAlert = true;
         var self = this;
 
         this.getGreetings = function (pageNo, pageSize) {
@@ -108,6 +109,10 @@
         this.refresh = function () {
             this.getGreetings(this.currentPage, this.pageSize);
         };
+
+        this.closeAlert = function() {
+            this.showAlert = false;
+        }
 
         this.refresh();
     });
