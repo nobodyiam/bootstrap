@@ -116,4 +116,14 @@ public class GreetingServiceImplTest {
         assertEquals(expectedDeletedRows, greetingService.deleteGreeting(greeting));
         verify(greetingMapper, times(1)).deleteGreeting(greeting);
     }
+
+    @Test
+    public void testCountGreetings() {
+        int someTotalNumber = 20;
+
+        when(greetingMapper.countGreetings()).thenReturn(someTotalNumber);
+
+        assertEquals(someTotalNumber, greetingService.countGreetings());
+        verify(greetingMapper, times(1)).countGreetings();
+    }
 }

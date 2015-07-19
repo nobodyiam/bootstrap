@@ -25,9 +25,10 @@
         </tbody>
     </table>
 
-    <!--<div class="panel-footer clearfix">-->
-        <!--<pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" max-size="10" rotate="false"-->
-                    <!--items-per-page="limit" ng-change="pageChanged(currentPage)" class="pagination-right"-->
-                    <!--previous-text="&lsaquo;" next-text="&rsaquo;" first-text="首页" last-text="尾页"></pagination>-->
-    <!--</div>-->
+    <div class="panel-footer clearfix">
+        <pagination boundary-links="true" total-items="greetingsCtrl.totalItems" ng-model="greetingsCtrl.currentPage"
+                    max-size="10" rotate="false" items-per-page="greetingsCtrl.pageSize"
+                    ng-change="greetingsCtrl.pageChanged()" class="pagination-right"
+                    previous-text="&lsaquo;" next-text="&rsaquo;"></pagination>
+    </div>
 </div>

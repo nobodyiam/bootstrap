@@ -24,6 +24,12 @@ public interface GreetingService {
     List<Greeting> getGreetings(int limit, int offset);
 
     /**
+     * get the total number of greetings
+     * @return the total number
+     */
+    int countGreetings();
+
+    /**
      * add a new greeting
      * @param greeting
      * @return the number of rows inserted

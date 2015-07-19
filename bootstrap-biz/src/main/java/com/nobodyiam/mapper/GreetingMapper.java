@@ -15,6 +15,9 @@ public interface GreetingMapper {
     @Select("SELECT id, content, updateTime FROM Greeting where isDeleted = 0 limit #{limit} offset #{offset}")
     List<Greeting> getGreetings(@Param("limit") int limit, @Param("offset") int offset);
 
+    @Select("SELECT COUNT(1) FROM Greeting where isDeleted = 0")
+    int countGreetings();
+
     @Insert("INSERT INTO Greeting (content) VALUES (#{content})")
     @SelectKey(before = false, resultType = long.class, keyProperty = "id", statement = "call identity()")
     int insertGreeting(Greeting greeting);

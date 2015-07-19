@@ -40,6 +40,11 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
+    public int countGreetings() {
+        return greetingMapper.countGreetings();
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public int insertGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");

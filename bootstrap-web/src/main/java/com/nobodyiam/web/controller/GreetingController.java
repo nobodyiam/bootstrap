@@ -2,6 +2,7 @@ package com.nobodyiam.web.controller;
 
 import com.nobodyiam.api.GreetingService;
 import com.nobodyiam.dto.Greeting;
+import com.nobodyiam.web.model.PageModel;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,9 +25,11 @@ public class GreetingController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Greeting> getGreetings(@RequestParam(value = "limit", defaultValue = "10") int limit,
+    public PageModel<Greeting> getGreetings(@RequestParam(value = "limit", defaultValue = "10") int limit,
                                        @RequestParam(value = "offset", defaultValue = "0") int offset) {
-        return greetingService.getGreetings(limit, offset);
+        List<Greeting> greetings = greetingService.getGreetings(limit, offset);
+
+        return new PageModel<Greeting>(greetingService.countGreetings(), greetings);
     }
 
     @RequestMapping(method = RequestMethod.POST)

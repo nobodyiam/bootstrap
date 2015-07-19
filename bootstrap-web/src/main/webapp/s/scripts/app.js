@@ -8,19 +8,21 @@
     var GREETINGS_PATH = '/greetings';
 
     app.controller('GreetingsController', function ($scope, $http, $modal, toastr) {
-        this.pageNo = 1;
+        this.currentPage = 1;
         this.pageSize = 10;
         this.greetings = [];
+        this.totalItems = 0;
         var self = this;
 
         this.getGreetings = function (pageNo, pageSize) {
             $http.get(GREETINGS_PATH, {
-                data: {
+                params: {
                     offset: (pageNo - 1) * pageSize,
                     limit: pageSize
                 }
             }).success(function (data, status, headers, config) {
-                self.greetings = data;
+                self.greetings = data && data.items;
+                self.totalItems = data && data.total;
 
             }).error(function (data, status, headers, config) {
                 toastr.error((data && data.msg) || 'Loading failed');
@@ -31,7 +33,7 @@
             var modalInstance = this.popUpEditModal({});
 
             modalInstance.result.then(function (addedItem) {
-                if (self.pageNo == 1 && self.greetings.length < self.pageSize) {
+                if (self.currentPage == 1 && self.greetings.length < self.pageSize) {
                     self.greetings.push(addedItem);
                 }
             });
@@ -92,8 +94,12 @@
             });
         };
 
+        this.pageChanged = function() {
+          this.init();
+        };
+
         this.init = function () {
-            this.getGreetings(this.pageNo, this.pageSize);
+            this.getGreetings(this.currentPage, this.pageSize);
         };
 
         this.init();

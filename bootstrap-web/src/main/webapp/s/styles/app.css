@@ -6,3 +6,10 @@
     color: #cccccc;
     cursor: not-allowed;
 }
+
+.pagination-right {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
