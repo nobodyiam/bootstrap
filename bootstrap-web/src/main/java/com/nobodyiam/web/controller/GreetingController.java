@@ -1,12 +1,20 @@
 package com.nobodyiam.web.controller;
 
+import com.google.common.collect.Lists;
 import com.nobodyiam.api.GreetingService;
 import com.nobodyiam.dto.Greeting;
+import com.nobodyiam.util.ExecutorsUtil;
 import com.nobodyiam.web.model.PageModel;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -16,8 +24,14 @@ import static com.google.common.base.Preconditions.checkArgument;
 @RestController
 @RequestMapping("/greetings")
 public class GreetingController {
+    private final int MAX_THREADS = 10; // max concurrent running job
+    private final int BLOCKING_QUEUE_SIZE = 30; // max waiting jobs
+    private final int TIME_OUT = 20; // 20 seconds timeout
+
     @Resource(name = "greetingService")
     private GreetingService greetingService;
+
+    private final ExecutorService executorService = ExecutorsUtil.newFixedThreadPool(MAX_THREADS, BLOCKING_QUEUE_SIZE);
 
     @RequestMapping(value = "/{greetingId}", method = RequestMethod.GET)
     public Greeting getGreeting(@PathVariable long greetingId) {
@@ -25,11 +39,31 @@ public class GreetingController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public PageModel<Greeting> getGreetings(@RequestParam(value = "limit", defaultValue = "10") int limit,
-                                       @RequestParam(value = "offset", defaultValue = "0") int offset) {
-        List<Greeting> greetings = greetingService.getGreetings(limit, offset);
+    public PageModel<Greeting> getGreetings(@RequestParam(value = "limit", defaultValue = "10") final int limit,
+                                            @RequestParam(value = "offset", defaultValue = "0") final int offset)
+            throws InterruptedException {
+        final PageModel<Greeting> result = new PageModel<Greeting>();
 
-        return new PageModel<Greeting>(greetingService.countGreetings(), greetings);
+        Collection<Runnable> tasks = Lists.newArrayList();
+        tasks.add(new Runnable() {
+            @Override
+            public void run() {
+                result.setItems(greetingService.getGreetings(limit, offset));
+            }
+        });
+        tasks.add(new Runnable() {
+            @Override
+            public void run() {
+                result.setTotal(greetingService.countGreetings());
+            }
+        });
+
+        for (Runnable task : tasks) {
+            executorService.submit(task);
+        }
+        executorService.awaitTermination(TIME_OUT, TimeUnit.SECONDS);
+
+        return result;
     }
 
     @RequestMapping(method = RequestMethod.POST)
