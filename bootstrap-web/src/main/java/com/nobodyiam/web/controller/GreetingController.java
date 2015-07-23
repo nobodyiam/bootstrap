@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -64,10 +66,10 @@ public class GreetingController {
 
         try {
             for (Future f : futures) {
-                f.get(TIME_OUT, TimeUnit.SECONDS);
+                f.get(TIME_OUT, TimeUnit.SECONDS); // wait for the task completed
             }
         } catch (ExecutionException e) {
-            throw e.getCause();
+            throw e.getCause(); // throw exceptions if task doesn't complete properly
         }
 
         return result;
