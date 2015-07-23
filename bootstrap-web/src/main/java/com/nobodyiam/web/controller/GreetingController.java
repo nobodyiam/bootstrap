@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -23,11 +22,11 @@ import static com.google.common.base.Preconditions.checkArgument;
 @RestController
 @RequestMapping("/greetings")
 public class GreetingController {
-    private final int MAX_THREADS = 10; // max concurrent running job
-    private final int BLOCKING_QUEUE_SIZE = 30; // max waiting jobs
     private final int TIME_OUT = 20; // 20 seconds timeout
-    private final ExecutorService executorService = ExecutorsUtil.newFixedThreadPool(MAX_THREADS, BLOCKING_QUEUE_SIZE);
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Resource(name = "executorService")
+    private ExecutorService executorService;
 
     @Resource(name = "greetingService")
     private GreetingService greetingService;
