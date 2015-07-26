@@ -3,7 +3,6 @@ package com.nobodyiam.web.controller;
 import com.google.common.collect.Lists;
 import com.nobodyiam.api.GreetingService;
 import com.nobodyiam.dto.Greeting;
-import com.nobodyiam.util.ExecutorsUtil;
 import com.nobodyiam.web.model.PageModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
