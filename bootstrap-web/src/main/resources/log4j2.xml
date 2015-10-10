@@ -10,7 +10,7 @@
     </appenders>
     <loggers>
         <logger name="com.nobodyiam.aop" additivity="false" level="trace">
-            <AppenderRef ref="Async" level="DEBUG"/>
+            <AppenderRef ref="Async" level="ERROR"/>
         </logger>
         <root level="info">
             <AppenderRef ref="Async"/>

@@ -47,15 +47,39 @@ public class DataConfig implements TransactionManagementConfigurer {
         return dataSource;
     }
 
+    /**
+     * @return the mysql data source
+     */
+    @Bean
+    public DataSource mysqlDataSource() {
+        ComboPooledDataSource dataSource = new ComboPooledDataSource();
+        try {
+            dataSource.setDriverClass("com.mysql.jdbc.Driver");
+        } catch (PropertyVetoException e) {
+            return null;
+        }
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/bootstrap");
+        dataSource.setUser("bootstrap");
+        dataSource.setPassword("bootstrap");
+        dataSource.setAcquireIncrement(50);
+        dataSource.setIdleConnectionTestPeriod(60);
+        dataSource.setMaxPoolSize(1000);
+        dataSource.setMinPoolSize(300);
+        dataSource.setInitialPoolSize(500);
+        dataSource.setMaxStatements(5000);
+
+        return dataSource;
+    }
+
     @Bean
     public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(h2DataSource());
+        return new DataSourceTransactionManager(mysqlDataSource());
     }
 
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(h2DataSource());
+        sessionFactory.setDataSource(mysqlDataSource());
         sessionFactory.setTypeAliasesPackage("com.nobodyiam.dto");
         return sessionFactory;
     }
