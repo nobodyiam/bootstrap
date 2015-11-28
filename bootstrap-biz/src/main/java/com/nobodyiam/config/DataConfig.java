@@ -63,23 +63,23 @@ public class DataConfig implements TransactionManagementConfigurer {
         dataSource.setPassword("bootstrap");
         dataSource.setAcquireIncrement(50);
         dataSource.setIdleConnectionTestPeriod(60);
-        dataSource.setMaxPoolSize(1000);
-        dataSource.setMinPoolSize(300);
-        dataSource.setInitialPoolSize(500);
-        dataSource.setMaxStatements(5000);
+        dataSource.setMaxPoolSize(50);
+        dataSource.setMinPoolSize(10);
+        dataSource.setInitialPoolSize(20);
+        dataSource.setMaxStatements(50);
 
         return dataSource;
     }
 
     @Bean
     public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(mysqlDataSource());
+        return new DataSourceTransactionManager(h2DataSource());
     }
 
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(mysqlDataSource());
+        sessionFactory.setDataSource(h2DataSource());
         sessionFactory.setTypeAliasesPackage("com.nobodyiam.dto");
         return sessionFactory;
     }

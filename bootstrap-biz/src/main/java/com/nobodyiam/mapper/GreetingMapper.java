@@ -19,7 +19,8 @@ public interface GreetingMapper {
     int countGreetings();
 
     @Insert("INSERT INTO Greeting (content) VALUES (#{content})")
-    @SelectKey(before = false, resultType = long.class, keyProperty = "id", statement = "call identity()")
+//    @SelectKey(before = false, resultType = long.class, keyProperty = "id", statement = "SELECT @@IDENTITY") // mysql
+    @SelectKey(before = false, resultType = long.class, keyProperty = "id", statement = "call identity()") // h2
     int insertGreeting(Greeting greeting);
 
     @Update("UPDATE Greeting SET content = #{content}, updateTime = Now() WHERE ID = #{id} and isDeleted = 0")
