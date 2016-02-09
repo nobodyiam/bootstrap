@@ -5,6 +5,9 @@ import com.nobodyiam.dto.Greeting;
 import com.nobodyiam.mapper.GreetingMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
@@ -15,15 +18,18 @@ import static org.mockito.Mockito.*;
 /**
  * Created by Jason on 7/11/15.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class GreetingServiceImplTest {
     private GreetingServiceImpl greetingService;
+    @Mock
     private GreetingMapper greetingMapper;
     private Greeting greeting;
 
     @Before
     public void setUp() {
         greetingService = new GreetingServiceImpl();
-        greetingMapper = mock(GreetingMapper.class);
+        //no need to explicitly mock objects when @Mock and MockitoJUnitRunner is used.
+//        greetingMapper = mock(GreetingMapper.class);
         ReflectionTestUtils.setField(greetingService, "greetingMapper", greetingMapper);
         greeting = new Greeting();
     }
