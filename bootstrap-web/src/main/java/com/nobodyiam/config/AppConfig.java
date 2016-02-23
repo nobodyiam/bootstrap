@@ -1,6 +1,8 @@
 package com.nobodyiam.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 import org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean;
 
 import java.util.concurrent.ExecutorService;
@@ -13,9 +15,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableAspectJAutoProxy
 @ComponentScan(value = "com.nobodyiam",
         excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = FilterConfig.class))
+@PropertySource("classpath:config.properties")
 public class AppConfig {
-    private final int MAX_THREADS = 30; // max concurrent running job
-    private final int BLOCKING_QUEUE_SIZE = 50; // max waiting jobs
+    @Autowired
+    private Environment env;
 
     @Bean
     public ExecutorService executorService() throws Exception {
@@ -24,10 +27,12 @@ public class AppConfig {
 
     @Bean
     public ThreadPoolExecutorFactoryBean threadPoolExecutorFactoryBean() {
+        int max_threads = Integer.parseInt(env.getProperty("threadpool.max_threads", "20"));
+        int blocking_queue_size = Integer.parseInt(env.getProperty("threadpool.blocking_queue_size", "40"));
         ThreadPoolExecutorFactoryBean threadPoolExecutorFactoryBean = new ThreadPoolExecutorFactoryBean();
-        threadPoolExecutorFactoryBean.setMaxPoolSize(MAX_THREADS);
-        threadPoolExecutorFactoryBean.setCorePoolSize(MAX_THREADS);
-        threadPoolExecutorFactoryBean.setQueueCapacity(BLOCKING_QUEUE_SIZE);
+        threadPoolExecutorFactoryBean.setMaxPoolSize(max_threads);
+        threadPoolExecutorFactoryBean.setCorePoolSize(max_threads);
+        threadPoolExecutorFactoryBean.setQueueCapacity(blocking_queue_size);
         threadPoolExecutorFactoryBean.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
 
         return threadPoolExecutorFactoryBean;
