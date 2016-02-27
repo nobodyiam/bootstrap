@@ -13,8 +13,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan(value = "com.nobodyiam",
-        excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = FilterConfig.class))
+//@ComponentScan(value = "com.nobodyiam",
+//        excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = FilterConfig.class))
 @PropertySource("classpath:config.properties")
 public class AppConfig {
     @Autowired
