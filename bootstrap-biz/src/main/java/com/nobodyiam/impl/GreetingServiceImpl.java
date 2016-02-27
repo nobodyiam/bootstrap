@@ -19,7 +19,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by Jason on 7/5/15.
  */
 @Service("greetingService")
-@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
 public class GreetingServiceImpl implements GreetingService {
 
     @Autowired
@@ -45,7 +44,7 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
     public int insertGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
@@ -53,7 +52,7 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
     public int updateGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
@@ -61,7 +60,7 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
     public int deleteGreeting(Greeting greeting) {
         checkNotNull(greeting, "Greeting cannot be null");
 
