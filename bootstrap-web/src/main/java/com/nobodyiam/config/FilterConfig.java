@@ -63,17 +63,17 @@ public class FilterConfig {
         return registrationBean;
     }
 
-    @Bean
-    public ServletRegistrationBean dispatcherServlet() {
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean();
-        DispatcherServlet dispatcherServlet = new DispatcherServlet();
-        dispatcherServlet.setContextClass(AnnotationConfigWebApplicationContext.class);
-        dispatcherServlet.setContextConfigLocation(null);
-        registrationBean.setServlet(dispatcherServlet);
-        registrationBean.setLoadOnStartup(1);
-        registrationBean.setUrlMappings(Arrays.asList("/app/*"));
-
-        return registrationBean;
-    }
+//    @Bean
+//    public ServletRegistrationBean dispatcherServlet() {
+//        ServletRegistrationBean registrationBean = new ServletRegistrationBean();
+//        DispatcherServlet dispatcherServlet = new DispatcherServlet();
+//        dispatcherServlet.setContextClass(AnnotationConfigWebApplicationContext.class);
+//        dispatcherServlet.setContextConfigLocation(null);
+//        registrationBean.setServlet(dispatcherServlet);
+//        registrationBean.setLoadOnStartup(1);
+//        registrationBean.setUrlMappings(Arrays.asList("/app/*"));
+//
+//        return registrationBean;
+//    }
 
 }
