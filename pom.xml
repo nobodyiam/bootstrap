@@ -33,7 +33,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- web -->
+            <!-- url rewrite -->
             <dependency>
                 <groupId>org.tuckey</groupId>
                 <artifactId>urlrewritefilter</artifactId>
