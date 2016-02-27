@@ -2,10 +2,13 @@ package com.nobodyiam.config;
 
 import com.nobodyiam.web.filter.AuthFilter;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HttpPutFormContentFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 
 import javax.servlet.DispatcherType;
@@ -25,7 +28,7 @@ public class FilterConfig {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new CharacterEncodingFilter("UTF-8", true));
         registrationBean.setUrlPatterns(DEFAULT_URL_MAPPINGS);
-
+        registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
         return registrationBean;
     }
 
@@ -34,6 +37,7 @@ public class FilterConfig {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new HttpPutFormContentFilter());
         registrationBean.setUrlPatterns(DEFAULT_URL_MAPPINGS);
+        registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
 
         return registrationBean;
     }
@@ -43,6 +47,7 @@ public class FilterConfig {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new UrlRewriteFilter());
         registrationBean.setUrlPatterns(DEFAULT_URL_MAPPINGS);
+        registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
 
         return registrationBean;
     }
@@ -54,6 +59,19 @@ public class FilterConfig {
         registrationBean.addInitParameter("prefix", "app");
         registrationBean.setUrlPatterns(Arrays.asList("/app/*"));
         registrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD);
+
+        return registrationBean;
+    }
+
+    @Bean
+    public ServletRegistrationBean dispatcherServlet() {
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean();
+        DispatcherServlet dispatcherServlet = new DispatcherServlet();
+        dispatcherServlet.setContextClass(AnnotationConfigWebApplicationContext.class);
+        dispatcherServlet.setContextConfigLocation(null);
+        registrationBean.setServlet(dispatcherServlet);
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.setUrlMappings(Arrays.asList("/app/*"));
 
         return registrationBean;
     }
