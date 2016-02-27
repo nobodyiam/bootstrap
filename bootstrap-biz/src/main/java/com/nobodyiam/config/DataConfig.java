@@ -50,26 +50,25 @@ public class DataConfig implements TransactionManagementConfigurer {
     /**
      * @return the mysql data source
      */
-    @Bean
-    public DataSource mysqlDataSource() {
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        try {
-            dataSource.setDriverClass("com.mysql.jdbc.Driver");
-        } catch (PropertyVetoException e) {
-            return null;
-        }
-        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/bootstrap");
-        dataSource.setUser("bootstrap");
-        dataSource.setPassword("bootstrap");
-        dataSource.setAcquireIncrement(50);
-        dataSource.setIdleConnectionTestPeriod(60);
-        dataSource.setMaxPoolSize(50);
-        dataSource.setMinPoolSize(10);
-        dataSource.setInitialPoolSize(20);
-        dataSource.setMaxStatements(50);
-
-        return dataSource;
-    }
+//    public DataSource mysqlDataSource() {
+//        ComboPooledDataSource dataSource = new ComboPooledDataSource();
+//        try {
+//            dataSource.setDriverClass("com.mysql.jdbc.Driver");
+//        } catch (PropertyVetoException e) {
+//            return null;
+//        }
+//        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/bootstrap");
+//        dataSource.setUser("bootstrap");
+//        dataSource.setPassword("bootstrap");
+//        dataSource.setAcquireIncrement(50);
+//        dataSource.setIdleConnectionTestPeriod(60);
+//        dataSource.setMaxPoolSize(50);
+//        dataSource.setMinPoolSize(10);
+//        dataSource.setInitialPoolSize(20);
+//        dataSource.setMaxStatements(50);
+//
+//        return dataSource;
+//    }
 
     @Bean
     public DataSourceTransactionManager transactionManager() {
