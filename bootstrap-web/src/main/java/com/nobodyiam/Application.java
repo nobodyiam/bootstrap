@@ -22,6 +22,7 @@ import java.util.Arrays;
  * 1. DispatcherServletAutoConfiguration - since I want to configure the servlet's url mapping
  * 2. DataSourceAutoConfiguration - since it only allows one data source, so I have to disable it
  * 3. DataSourceTransactionManagerAutoConfiguration - since it only allows one data source, so I have to disable it
+ * 4. ErrorMvcAutoConfiguration - disable default /error page
  */
 @SpringBootApplication(exclude = {DispatcherServletAutoConfiguration.class, DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, ErrorMvcAutoConfiguration.class})
 public class Application {
