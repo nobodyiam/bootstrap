@@ -21,17 +21,13 @@
         <from>/templates/**</from>
         <to>/s/templates/$1</to>
     </rule>
-    <rule>
-        <from>/</from>
+    <rule match-type="regex">
+        <from>^\/(index\..*)?</from>
         <to>/app/</to>
     </rule>
     <rule>
         <from>/**</from>
         <to>/app/$1</to>
-    </rule>
-    <rule match-type="regex">
-        <from>^/(index.*)?</from>
-        <to>/app/</to>
     </rule>
     <outbound-rule>
         <from>/app/**</from>
