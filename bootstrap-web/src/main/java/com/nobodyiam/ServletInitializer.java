@@ -6,8 +6,9 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 public class ServletInitializer extends SpringBootServletInitializer {
 
     @Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Application.class);
-	}
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        this.setRegisterErrorPageFilter(false);
+        return application.sources(Application.class);
+    }
 
 }
