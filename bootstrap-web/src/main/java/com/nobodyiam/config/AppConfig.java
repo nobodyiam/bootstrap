@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Configuration
 @EnableAspectJAutoProxy
-@PropertySource("classpath:config.properties")
+@PropertySource("classpath:bootstrap-web.properties")
 public class AppConfig {
     @Autowired
     private Environment env;

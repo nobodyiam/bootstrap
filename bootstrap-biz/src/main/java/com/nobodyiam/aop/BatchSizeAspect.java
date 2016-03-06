@@ -8,6 +8,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -19,7 +21,9 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 @Aspect
 @Component
+@PropertySource("classpath:bootstrap-biz.properties")
 public class BatchSizeAspect {
+    private int maxBatchSize;
 
     @Pointcut("@annotation(com.nobodyiam.annotation.RestrictBatchSize)")
     public void methodWithBatchSizeCheck() {
@@ -43,6 +47,11 @@ public class BatchSizeAspect {
             return;
         }
         int batchSize = (Integer) (joinPoint.getArgs())[paramIndex];
-        checkArgument(batchSize <= ConstantsUtil.MaxBatchSize(), String.format("Batch size(%d) exceeds max allowed size: %d", batchSize, ConstantsUtil.MaxBatchSize()));
+        checkArgument(batchSize <= maxBatchSize, String.format("Batch size(%d) exceeds max allowed size: %d", batchSize, ConstantsUtil.MaxBatchSize()));
+    }
+
+    @Value("${batch-size.max}")
+    public void setMaxBatchSize(int maxBatchSize) {
+        this.maxBatchSize = maxBatchSize;
     }
 }
