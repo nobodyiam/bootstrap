@@ -1,3 +1,6 @@
+#Java Web Bootstrap
+[![Build Status](https://travis-ci.org/nobodyiam/java-web-bootstrap.svg?branch=master)](https://travis-ci.org/nobodyiam/java-web-bootstrap)
+
 ## Introduction
 
 This is a bootstrap java web project which shows the use of following components:
