@@ -9,16 +9,14 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <java.src.version>1.6</java.src.version>
-        <java.target.version>1.6</java.target.version>
+        <java.version>1.8</java.version>
+        <java.src.version>${java.version}</java.src.version>
+        <java.target.version>${java.version}</java.target.version>
         <project.encoding>UTF-8</project.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<spring.version>4.1.7.RELEASE</spring.version>-->
-        <!--<aspectj.version>1.8.6</aspectj.version>-->
         <servlet.version>2.5</servlet.version>
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
-        <!--<mysql-connector.version>5.1.36</mysql-connector.version>-->
     </properties>
     <modules>
         <module>bootstrap-web</module>
@@ -31,46 +29,10 @@
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
-                <version>2.0.2.RELEASE</version>
+                <version>2.0.3.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- spring -->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-context</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-webmvc</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-tx</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-jdbc</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-test</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.aspectj</groupId>-->
-                <!--<artifactId>aspectjrt</artifactId>-->
-                <!--<version>${aspectj.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.aspectj</groupId>-->
-                <!--<artifactId>aspectjweaver</artifactId>-->
-                <!--<version>${aspectj.version}</version>-->
-            <!--</dependency>-->
             <!-- web -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -78,11 +40,6 @@
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>javax.servlet</groupId>-->
-                <!--<artifactId>jstl</artifactId>-->
-                <!--<version>1.2</version>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>org.tuckey</groupId>
                 <artifactId>urlrewritefilter</artifactId>
@@ -99,88 +56,6 @@
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>mysql</groupId>-->
-                <!--<artifactId>mysql-connector-java</artifactId>-->
-                <!--<version>${mysql-connector.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.mchange</groupId>-->
-                <!--<artifactId>c3p0</artifactId>-->
-                <!--<version>0.9.5.1</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.h2database</groupId>-->
-                <!--<artifactId>h2</artifactId>-->
-                <!--<version>1.4.186</version>-->
-            <!--</dependency>-->
-            <!-- jackson -->
-            <!--<dependency>-->
-                <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-                <!--<artifactId>jackson-core</artifactId>-->
-                <!--<version>2.5.4</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-                <!--<artifactId>jackson-databind</artifactId>-->
-                <!--<version>2.5.4</version>-->
-            <!--</dependency>-->
-            <!-- gson -->
-            <!--<dependency>-->
-                <!--<groupId>com.google.code.gson</groupId>-->
-                <!--<artifactId>gson</artifactId>-->
-                <!--<version>2.4</version>-->
-            <!--</dependency>-->
-            <!-- guava -->
-            <!--<dependency>-->
-                <!--<groupId>com.google.guava</groupId>-->
-                <!--<artifactId>guava</artifactId>-->
-                <!--<version>18.0</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.google.code.findbugs</groupId>-->
-                <!--<artifactId>jsr305</artifactId>-->
-                <!--<version>3.0.0</version>-->
-            <!--</dependency>-->
-            <!-- test -->
-            <!--<dependency>-->
-                <!--<groupId>junit</groupId>-->
-                <!--<artifactId>junit</artifactId>-->
-                <!--<version>4.10</version>-->
-                <!--<scope>test</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.mockito</groupId>-->
-                <!--<artifactId>mockito-core</artifactId>-->
-                <!--<version>2.0.28-beta</version>-->
-                <!--<scope>test</scope>-->
-            <!--</dependency>-->
-            <!-- log -->
-            <!--<dependency>-->
-                <!--<groupId>org.slf4j</groupId>-->
-                <!--<artifactId>slf4j-api</artifactId>-->
-                <!--<version>1.7.12</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.slf4j</groupId>-->
-                <!--<artifactId>slf4j-log4j12</artifactId>-->
-                <!--<version>1.7.12</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.logging.log4j</groupId>-->
-                <!--<artifactId>log4j-core</artifactId>-->
-                <!--<version>2.4</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.logging.log4j</groupId>-->
-                <!--<artifactId>log4j-api</artifactId>-->
-                <!--<version>2.4</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.logging.log4j</groupId>-->
-                <!--<artifactId>log4j-slf4j-impl</artifactId>-->
-                <!--<version>2.4</version>-->
-            <!--</dependency>-->
         </dependencies>
 
     </dependencyManagement>
