@@ -33,6 +33,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- config -->
+            <dependency>
+                <groupId>com.baidu.disconf</groupId>
+                <artifactId>disconf-client</artifactId>
+                <version>2.6.31</version>
+            </dependency>
             <!-- web -->
             <dependency>
                 <groupId>javax.servlet</groupId>

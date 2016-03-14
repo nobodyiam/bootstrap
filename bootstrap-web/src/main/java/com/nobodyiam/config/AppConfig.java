@@ -1,5 +1,7 @@
 package com.nobodyiam.config;
 
+import com.baidu.disconf.client.DisconfMgrBean;
+import com.baidu.disconf.client.DisconfMgrBeanSecond;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -27,8 +29,8 @@ public class AppConfig {
 
     @Bean
     public ThreadPoolExecutorFactoryBean threadPoolExecutorFactoryBean() {
-        int max_threads = Integer.parseInt(env.getProperty("threadpool.max_threads", "20"));
-        int blocking_queue_size = Integer.parseInt(env.getProperty("threadpool.blocking_queue_size", "40"));
+        int max_threads = 20;
+        int blocking_queue_size = 40;
         ThreadPoolExecutorFactoryBean threadPoolExecutorFactoryBean = new ThreadPoolExecutorFactoryBean();
         threadPoolExecutorFactoryBean.setMaxPoolSize(max_threads);
         threadPoolExecutorFactoryBean.setCorePoolSize(max_threads);
@@ -36,5 +38,17 @@ public class AppConfig {
         threadPoolExecutorFactoryBean.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
 
         return threadPoolExecutorFactoryBean;
+    }
+
+    @Bean(destroyMethod = "destroy")
+    public DisconfMgrBean firstDisconfMgrBean() {
+        DisconfMgrBean disconfMgrBean = new DisconfMgrBean();
+        disconfMgrBean.setScanPackage("com.nobodyiam");
+        return disconfMgrBean;
+    }
+
+    @Bean(initMethod = "init", destroyMethod = "destroy")
+    public DisconfMgrBeanSecond secondDisconfMgrBean() {
+        return new DisconfMgrBeanSecond();
     }
 }

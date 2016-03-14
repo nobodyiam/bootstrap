@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.nobodyiam.api.GreetingService;
 import com.nobodyiam.dto.Greeting;
 import com.nobodyiam.web.model.PageModel;
+import com.nobodyiam.web.util.ConfigUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,9 @@ public class GreetingController {
 
     @Resource(name = "greetingService")
     private GreetingService greetingService;
+
+    @Resource(name = "configUtil")
+    private ConfigUtil configUtil;
 
     @RequestMapping(value = "/{greetingId}", method = RequestMethod.GET)
     public Greeting getGreeting(@PathVariable long greetingId) {
