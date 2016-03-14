@@ -3,7 +3,9 @@ package com.nobodyiam.config;
 import com.baidu.disconf.client.DisconfMgrBean;
 import com.baidu.disconf.client.DisconfMgrBeanSecond;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean;
 
@@ -21,6 +23,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class AppConfig {
     @Autowired
     private Environment env;
+
+    @Value("${threadpool.max_threads}")
+    private int max_threads;
 
     @Bean
     public ExecutorService executorService() throws Exception {
@@ -50,5 +55,10 @@ public class AppConfig {
     @Bean(initMethod = "init", destroyMethod = "destroy")
     public DisconfMgrBeanSecond secondDisconfMgrBean() {
         return new DisconfMgrBeanSecond();
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }
