@@ -7,6 +7,8 @@ import com.nobodyiam.web.model.PageModel;
 import com.nobodyiam.web.util.ConfigUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,6 +38,9 @@ public class GreetingController {
 
     @Resource(name = "configUtil")
     private ConfigUtil configUtil;
+
+    @Autowired
+    private Environment env;
 
     @RequestMapping(value = "/{greetingId}", method = RequestMethod.GET)
     public Greeting getGreeting(@PathVariable long greetingId) {
